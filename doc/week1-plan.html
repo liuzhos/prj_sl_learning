@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>第 1 周学习计划（Laravel Sanctum + React + TypeScript）</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --card: #121a33;
+        --text: #e8eefc;
+        --muted: #b8c2e6;
+        --accent: #7aa2ff;
+        --border: rgba(255, 255, 255, 0.08);
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 16px 56px;
+      }
+      .header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: 0.2px;
+      }
+      .sub {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .card {
+        background: rgba(18, 26, 51, 0.95);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px 16px;
+        margin-top: 14px;
+      }
+      .toc {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding-left: 18px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      h2 {
+        margin: 18px 0 10px;
+        font-size: 16px;
+      }
+      h3 {
+        margin: 12px 0 6px;
+        font-size: 14px;
+        color: var(--text);
+      }
+      .pill {
+        display: inline-block;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 3px 10px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .block {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 12px 12px;
+      }
+      .label {
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        margin: 10px 0 0;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(0, 0, 0, 0.25);
+        color: #dbe6ff;
+        font-size: 13px;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: #dbe6ff;
+      }
+      ul {
+        margin: 6px 0 0;
+        padding-left: 18px;
+      }
+      li {
+        margin: 6px 0;
+      }
+      .small {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .footer {
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .day {
+        scroll-margin-top: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <div>
+          <h1>第 1 周学习计划（Sanctum JSON API + React + TypeScript）</h1>
+          <div class="sub">目标：在 7 天内跑通基本工具链，并产出可验证结果（能在终端/浏览器看到）。</div>
+          <div class="sub">每天：3~5 小时（安装/启动耗时也算）</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>目录</h2>
+        <div class="grid">
+          <ul class="toc">
+            <li><a href="#day1">第 1 天：环境体检 + 建立学习仓库</a></li>
+            <li><a href="#day2">第 2 天：Git Desktop 提交一次</a></li>
+            <li><a href="#day3">第 3 天：TypeScript 写一个能跑脚本</a></li>
+            <li><a href="#day4">第 4 天：React + TypeScript 跑起来（可点）</a></li>
+            <li><a href="#day5">第 5 天：Laravel JSON API 起最简单接口</a></li>
+            <li><a href="#day6">第 6 天：React 调用 Laravel API（loading/error）</a></li>
+            <li><a href="#day7">第 7 天：Sanctum：未登录访问受保护接口返回 401</a></li>
+          </ul>
+        </div>
+        <div class="footer">建议：每天做完最后“完成标准”再继续下一天；如果中途报错先记下报错关键字，回头再处理。</div>
+      </div>
+
+      <div id="day1" class="day card">
+        <h2>第 1 天：环境体检 + 建立学习仓库</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>确认电脑上 `Node / npm / PHP / Composer / Git` 可用；安装并打开 `VS Code` 与 `GitHub Desktop`；建立学习产出目录，并创建第一份文档。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>命令行与版本号的意义；一个学习项目需要“代码目录 + README/文档”。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div>
+            <div><a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer">VS Code</a></div>
+            <div><a href="https://desktop.github.com/" target="_blank" rel="noreferrer">GitHub Desktop</a></div>
+            <div><a href="https://nodejs.org/en/" target="_blank" rel="noreferrer">Node.js</a></div>
+            <div><a href="https://laravel.com/docs" target="_blank" rel="noreferrer">Laravel 文档（先不深读，后面用）</a></div>
+          </div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习（做完就有产出）</div>
+          <ol>
+            <li>
+              创建学习目录
+              <pre># 建议在 PowerShell（Windows 终端）执行；命令不依赖当前目录
+mkdir -Force 'C:\learning\week1'</pre>
+            </li>
+            <li>
+              逐个检查工具版本并记录到文件：新建 `tool-check.md`
+              <pre>
+node -v
+npm -v
+	php -v
+	composer -V
+	git --version
+
+New-Item -ItemType File -Force -Path 'C:\learning\week1\tool-check.md' | Out-Null
+              </pre>
+              用 VS Code 打开 `tool-check.md`，把上述版本号粘进去（每行一个版本）。
+            </li>
+            <li>
+              初始化一个本地 Git 仓库并提交：
+              <pre>
+cd 'C:\learning\week1'
+git init
+git add tool-check.md
+git commit -m "week1: tool check"</pre>
+<!--
+*** End Patch*** End Patch
+            -->
+            </li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>能看到 `git commit` 成功；`tool-check.md` 里有版本号。</div>
+        </div>
+      </div>
+
+      <div id="day2" class="day card">
+        <h2>第 2 天：Git Desktop 上提交一次修改</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>用 GitHub Desktop 完成：修改文件 → Commit；理解分支是“安全试错空间”。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>`commit` 是一次进度保存；分支用于降低改坏代码的风险。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div><a href="https://docs.github.com/en/desktop" target="_blank" rel="noreferrer">GitHub Desktop 文档</a></div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习</div>
+          <ol>
+            <li>
+              创建一个文件：
+              <pre>
+cd 'C:\learning\week1'
+echo "# Week1 Daily Notes" > day2.md</pre>
+            </li>
+            <li>用 VS Code 写三行：今天做了什么、遇到的一个小问题、希望的结果。</li>
+            <li>
+              终端提交：
+              <pre>
+git add day2.md
+git commit -m "week1: day2 notes"</pre>
+            </li>
+            <li>打开 GitHub Desktop：确认能看到这次 commit；再改 `day2.md` 加一句，然后再提交一次。</li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>GitHub Desktop 清晰显示 2 次提交记录。</div>
+        </div>
+      </div>
+
+      <div id="day3" class="day card">
+        <h2>第 3 天：TypeScript 写一个能跑的脚本</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>能运行一个 `TypeScript` 文件，在终端看到输出（让“写代码”立刻发生）。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>变量、函数、数组/对象；类型用于更快定位写错的位置。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div><a href="https://www.typescriptlang.org/docs/handbook/" target="_blank" rel="noreferrer">TypeScript Handbook</a>（只看今天用到的部分）</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习（创建可运行项目）</div>
+          <ol>
+            <li>
+              建目录并初始化 npm：
+              <pre>
+mkdir -Force 'C:\learning\week1\ts-playground'
+cd 'C:\learning\week1\ts-playground'
+npm init -y</pre>
+            </li>
+            <li>
+              安装运行环境：
+              <pre>npm i -D typescript tsx</pre>
+            </li>
+            <li>
+              创建 `index.ts`：
+              <pre>New-Item -ItemType File -Force -Path .\index.ts | Out-Null</pre>
+              <div class="small">用 VS Code 打开 `index.ts`，粘贴下面代码：</div>
+              <pre>
+type ApiItem = {
+  id: number;
+  name: string;
+  status: "active" | "inactive";
+};
+
+const items: ApiItem[] = [
+  { id: 1, name: "Camera A", status: "active" },
+  { id: 2, name: "Camera B", status: "inactive" },
+];
+
+function summarize(list: ApiItem[]) {
+  const activeCount = list.filter(x => x.status === "active").length;
+  return { total: list.length, activeCount };
+}
+
+console.log("items =", items);
+console.log("summary =", summarize(items));
+              </pre>
+            </li>
+            <li>
+              运行并确认输出：
+              <pre>npx tsx index.ts</pre>
+            </li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>终端输出里能看到 `items` 和 `summary`。</div>
+        </div>
+      </div>
+
+      <div id="day4" class="day card">
+        <h2>第 4 天：React + TypeScript 跑起来（可点页面）</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>创建 React + TypeScript 项目；页面上出现按钮与计数结果（点击后变化）。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>组件、state（状态）、事件（点击）、如何让页面更新。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div>
+            <div><a href="https://vitejs.dev/guide/" target="_blank" rel="noreferrer">Vite 指南</a></div>
+            <div><a href="https://react.dev/learn" target="_blank" rel="noreferrer">React Learn</a>（只看今天需要的部分）</div>
+          </div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习（创建项目 + 改组件）</div>
+          <ol>
+            <li>
+              建目录：
+              <pre>
+mkdir -Force 'C:\learning\week1\react-app'
+cd 'C:\learning\week1\react-app'</pre>
+            </li>
+            <li>初始化模板：运行 `npm create vite@latest`，选择 `React` + `TypeScript`（按提示选即可）。</li>
+            <li>
+              启动：
+              <pre>
+npm install
+npm run dev</pre>
+            </li>
+            <li>
+              打开并修改 `src/App.tsx`，粘贴（替换为这份即可）：
+              <pre>
+import { useState } from "react";
+
+export default function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div style={{ padding: 24, fontFamily: "system-ui" }}&gt;
+      &lt;h1&gt;Week1 React Counter&lt;/h1&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(c =&gt; c + 1)}&gt;+1&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+              <div class="small">注意：上面显示用了 HTML 转义（&lt; &gt;），粘贴到文件时用正常的 JSX 符号即可。</div>
+            </li>
+            <li>浏览器打开页面，点击按钮，确认计数递增。</li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>`npm run dev` 正常；按钮点击计数增加。</div>
+        </div>
+      </div>
+
+      <div id="day5" class="day card">
+        <h2>第 5 天：Laravel JSON API 起最简单接口</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>创建 Laravel 后端项目；写 `GET /api/hello` 返回 JSON；浏览器看到结果（可见产出）。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>`routes/api.php` 是路由；返回 JSON 的基本写法。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div>
+            <div><a href="https://laravel.com/docs/routing" target="_blank" rel="noreferrer">Laravel Routing</a></div>
+            <div><a href="https://laravel.com/docs/responses" target="_blank" rel="noreferrer">Laravel Responses</a></div>
+          </div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习（创建后端 + 加接口）</div>
+          <ol>
+            <li>
+              到学习目录：
+              <pre>
+mkdir -Force 'C:\learning\week1'
+cd 'C:\learning\week1'</pre>
+            </li>
+            <li>
+              创建 Laravel 项目（第一次可能要等）：
+              <pre>composer create-project laravel/laravel laravel-api</pre>
+            </li>
+            <li>
+              启动后端：
+              <pre>cd laravel-api
+php artisan serve</pre>
+            </li>
+            <li>
+              在 `routes/api.php` 增加路由（放底部）：
+              <pre>
+Route::get('/hello', function () {
+    return response()-&gt;json([
+        "message" =&gt; "hello from laravel",
+        "time" =&gt; now()-&gt;toDateTimeString(),
+    ]);
+});</pre>
+            </li>
+            <li>
+              测试：
+              <pre>http://127.0.0.1:8000/api/hello</pre>
+              或：
+              <pre>curl http://127.0.0.1:8000/api/hello</pre>
+            </li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>接口返回 JSON，包含 `message` 和 `time`。</div>
+        </div>
+      </div>
+
+      <div id="day6" class="day card">
+        <h2>第 6 天：React 调用 Laravel API（loading/error）</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>React 页面点击或自动请求 `GET /api/hello`；展示后端返回数据；处理加载/错误态；避免跨域坑。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>React 的 `fetch`；用 Vite proxy 让 `/api` 转发到 Laravel，从而避免 CORS。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div>
+            <div><a href="https://vitejs.dev/config/server-options.html#server-proxy" target="_blank" rel="noreferrer">Vite Dev Server Proxy</a></div>
+            <div><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank" rel="noreferrer">MDN fetch</a></div>
+          </div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习</div>
+          <ol>
+            <li>
+              在 React 项目里配置 Vite 代理（核心是 `server.proxy`）：
+              <pre>
+// 打开 vite.config.ts
+// 添加/修改为下面这种结构（按项目文件命名调整）：
+server: {
+  proxy: {
+    "/api": "http://127.0.0.1:8000",
+  },
+},</pre>
+              <div class="small">如果不知道 `vite.config.ts` 在哪，就在 VS Code 搜索 `vite.config`。</div>
+            </li>
+            <li>
+              修改 `src/App.tsx`：自动请求并显示 message/time（示例直接粘贴即可跑）：
+              <pre>
+import { useEffect, useState } from "react";
+
+type HelloResponse = {
+  message: string;
+  time: string;
+};
+
+export default function App() {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState&lt;HelloResponse | null&gt;(null);
+  const [error, setError] = useState&lt;string | null&gt;(null);
+
+  useEffect(() =&gt; {
+    const run = async () =&gt; {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const res = await fetch("/api/hello");
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = (await res.json()) as HelloResponse;
+        setData(json);
+      } catch (e) {
+        setError(e instanceof Error ? e.message : "unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    run();
+  }, []);
+
+  return (
+    &lt;div style={{ padding: 24, fontFamily: "system-ui" }}&gt;
+      &lt;h1&gt;Week1 API Call&lt;/h1&gt;
+      {loading &amp;&amp; &lt;p&gt;Loading...&lt;/p&gt;}
+      {error &amp;&amp; &lt;p style={{ color: "crimson" }}&gt;Error: {error}&lt;/p&gt;}
+      {data &amp;&amp; (
+        &lt;div&gt;
+          &lt;p&gt;Message: {data.message}&lt;/p&gt;
+          &lt;p&gt;Time: {data.time}&lt;/p&gt;
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}</pre>
+              <div class="small">同样注意：HTML 转义只是为了显示，这里最终文件要用正常 JSX/TS 符号。</div>
+            </li>
+            <li>同时运行后端：`php artisan serve`；前端：`npm run dev`。</li>
+            <li>浏览器确认页面能显示 `message/time`。</li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>页面显示从 Laravel 拉到的 message/time，且能看到 loading/error。</div>
+        </div>
+      </div>
+
+      <div id="day7" class="day card">
+        <h2>第 7 天：Sanctum 未登录访问受保护接口返回 401</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>安装 Sanctum；加一个 `auth:sanctum` 受保护路由；未带 token 访问得到 401（最直观验证认证机制）。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>理解 `auth:sanctum` 的作用：没凭证进不去。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div><a href="https://laravel.com/docs/sanctum" target="_blank" rel="noreferrer">Laravel Sanctum</a></div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习（做验证即可，不需要完整登录流程）</div>
+          <ol>
+            <li>
+              安装 Sanctum：
+              <pre>
+cd 'C:\learning\week1\laravel-api'
+composer require laravel/sanctum</pre>
+            </li>
+            <li>
+              在 `routes/api.php` 加受保护路由（放底部）：
+              <pre>
+use Illuminate\Http\Request;
+
+Route::get('/protected', function (Request $request) {
+    return response()-&gt;json([
+        "ok" =&gt; true,
+        "user" =&gt; $request-&gt;user(),
+    ]);
+})->middleware('auth:sanctum');</pre>
+            </li>
+            <li>用 curl 测未授权访问是否是 401：</li>
+            <li>
+              <pre>curl -i http://127.0.0.1:8000/api/protected</pre>
+              观察返回头：应出现 `401 Unauthorized`。
+            </li>
+            <li>记录产出到 `day7.md`：</li>
+            <li>
+              <pre>Set-Content -Path 'C:\learning\week1\day7.md' -Value "day7: /api/protected should be 401 without token"</pre>
+            </li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>未登录访问 `/api/protected` 得到 `401 Unauthorized`。</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>本周产出清单（做完后把结果发给出来）</h2>
+        <div class="small">完成后，把下面这些结果用文字,或者截图发出来（说明此项目已经完成）。</div>
+        <ul>
+          <li>第 1 天: `tool-check.md` 的版本号是否正常</li>
+          <li>第 2 天: GitHub Desktop 清晰显示 2 次提交记录</li>
+          <li>第 3 天: TypeScript 脚本运行输出是否有 `items/summary`</li>
+          <li>第 4 天: React 页面点击计数是否变化</li>
+          <li>第 5 天: `GET /api/hello` 是否返回 JSON</li>
+          <li>第 6 天: React 是否显示后端返回 `message/time`</li>
+          <li>第 7 天: curl 是否返回 `401 Unauthorized`</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
+

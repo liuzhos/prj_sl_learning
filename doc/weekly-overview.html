@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>学习路径 · 按周概览（Laravel + Sanctum + React + TypeScript）</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --card: #121a33;
+        --text: #e8eefc;
+        --muted: #b8c2e6;
+        --accent: #7aa2ff;
+        --border: rgba(255, 255, 255, 0.08);
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 16px 56px;
+      }
+      .header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+      }
+      h1 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: 0.2px;
+      }
+      .sub {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .card {
+        background: rgba(18, 26, 51, 0.95);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px 16px;
+        margin-top: 14px;
+        scroll-margin-top: 18px;
+      }
+      .toc {
+        list-style: disc;
+        padding-left: 20px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .toc li {
+        margin: 6px 0;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      h2 {
+        margin: 0 0 12px;
+        font-size: 16px;
+      }
+      .pill {
+        display: inline-block;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 3px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        align-self: flex-start;
+      }
+      .block {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 12px 12px;
+        margin-top: 10px;
+      }
+      .block:first-of-type {
+        margin-top: 0;
+      }
+      .label {
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+      ul.body-list {
+        margin: 0;
+        padding-left: 18px;
+      }
+      ul.body-list li {
+        margin: 6px 0;
+      }
+      .refs {
+        margin: 0;
+        padding-left: 18px;
+      }
+      .refs li {
+        margin: 6px 0;
+      }
+      .note {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <div>
+          <h1>学习路径 · 按周概览</h1>
+          <div class="sub">
+            栈：Laravel（JSON API）+ Sanctum + React + TypeScript。面向接近零基础的转行者；<br/>每周只列出「目标 / 学习内容 / 参考资料」概要，不含逐日练习细节。第 1 周逐日拆解见
+            <a href="week1-plan.html">week1-plan.html</a>。
+          </div>
+        </div>
+        <span class="pill">可按自身节奏调整周期</span>
+      </div>
+
+      <div class="card">
+        <h2>目录</h2>
+        <ul class="toc">
+          <li><a href="#w1">第 1 周 · 工具链与前后端「先跑通」</a></li>
+          <li><a href="#w2">第 2 周 · Sanctum 登录与受保护接口</a></li>
+          <li><a href="#w3">第 3 周 · Laravel API：校验、资源、分页</a></li>
+          <li><a href="#w4">第 4 周 · React：列表、表单与接口约定</a></li>
+          <li><a href="#w5">第 5 周 · 数据层：迁移、Eloquent、简单关联</a></li>
+          <li><a href="#w6">第 6 周 · H5 / WebView 与工程习惯</a></li>
+          <li><a href="#w7">第 7 周 · 与团队仓库对齐：分支、MR、环境</a></li>
+          <li><a href="#w8">第 8 周 · 小模块竖切与复盘</a></li>
+        </ul>
+      </div>
+
+      <div id="w1" class="card">
+        <h2>第 1 周 · 工具链与前后端「先跑通」</h2>
+        <div class="block">
+          <div class="label">目标</div>
+          <ul class="body-list">
+            <li>装好编辑器、Git、Node、PHP、Composer；能在本地提交代码。</li>
+            <li>TypeScript 写最小脚本；React + TS 页面能运行并有简单交互。</li>
+            <li>Laravel 起一个返回 JSON 的接口；React 通过代理调用；初步验证 Sanctum 保护路由返回 401。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">学习内容</div>
+          <ul class="body-list">
+            <li>终端与版本号；Git 提交概念；npm、Vite、Laravel 路由与 JSON 响应。</li>
+            <li>前后端分离下如何用开发代理避免 CORS；HTTP 状态码与 JSON 结构的基本直觉。</li>
+            <li>Sanctum 是什么、为何未授权会得到 401（先机制、后完整登录流程）。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">参考资料</div>
+          <ul class="refs">
+            <li><a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer">Visual Studio Code</a></li>
+            <li><a href="https://desktop.github.com/" target="_blank" rel="noreferrer">GitHub Desktop</a></li>
+            <li><a href="https://www.typescriptlang.org/docs/handbook/" target="_blank" rel="noreferrer">TypeScript Handbook</a></li>
+            <li><a href="https://vitejs.dev/guide/" target="_blank" rel="noreferrer">Vite 指南</a> · <a href="https://react.dev/learn" target="_blank" rel="noreferrer">React Learn</a></li>
+            <li><a href="https://laravel.com/docs/routing" target="_blank" rel="noreferrer">Laravel Routing</a> · <a href="https://laravel.com/docs/responses" target="_blank" rel="noreferrer">Responses</a></li>
+            <li><a href="https://laravel.com/docs/sanctum" target="_blank" rel="noreferrer">Laravel Sanctum</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="w2" class="card">
+        <h2>第 2 周 · Sanctum 登录与受保护接口</h2>
+        <div class="block">
+          <div class="label">目标</div>
+          <ul class="body-list">
+            <li>走通「注册/登录 → 拿到可用凭证 → 请求受保护 API」的最小闭环（以实际采用的 Sanctum 模式为准：SPA Cookie 或 Personal Access Token）。</li>
+            <li>React 侧能带上凭证、处理 401/403 与登出后的状态。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">学习内容</div>
+          <ul class="body-list">
+            <li>Laravel 用户模型、认证配置与 Sanctum 中间件；API 返回结构统一（成功、校验错误、未授权）。</li>
+            <li>前端安全常识：不把密钥写进仓库；Token/Cookie 的存放与请求头惯例。</li>
+            <li>TypeScript：为接口响应定义类型，减少「字段名写错」。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">参考资料</div>
+          <ul class="refs">
+            <li><a href="https://laravel.com/docs/sanctum" target="_blank" rel="noreferrer">Sanctum（SPA API / Token）</a></li>
+            <li><a href="https://laravel.com/docs/authentication" target="_blank" rel="noreferrer">Laravel Authentication</a></li>
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status" target="_blank" rel="noreferrer">HTTP 状态码 · MDN</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="w3" class="card">
+        <h2>第 3 周 · Laravel API：校验、资源、分页</h2>
+        <div class="block">
+          <div class="label">目标</div>
+          <ul class="body-list">
+            <li>能读懂并仿写常见 CRUD 接口：列表（含分页/筛选骨架）、详情、创建、更新。</li>
+            <li>表单校验与 422 错误体与前端字段一一对应。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">学习内容</div>
+          <ul class="body-list">
+            <li>控制器职责；Request 校验；API Resource（或统一数组结构）用于规范化 JSON。</li>
+            <li>Eloquent 查询、`paginate`、排序参数约定。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">参考资料</div>
+          <ul class="refs">
+            <li><a href="https://laravel.com/docs/validation" target="_blank" rel="noreferrer">Validation</a></li>
+            <li><a href="https://laravel.com/docs/eloquent" target="_blank" rel="noreferrer">Eloquent</a></li>
+            <li><a href="https://laravel.com/docs/pagination" target="_blank" rel="noreferrer">Pagination</a></li>
+            <li><a href="https://laravel.com/docs/eloquent-resources" target="_blank" rel="noreferrer">Eloquent API Resources</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="w4" class="card">
+        <h2>第 4 周 · React：列表、表单与接口约定</h2>
+        <div class="block">
+          <div class="label">目标</div>
+          <ul class="body-list">
+            <li>列表页：加载中、空状态、错误展示；分页控件与 query 参数同步（若项目用路由）。</li>
+            <li>表单：受控输入、提交、展示服务端校验错误。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">学习内容</div>
+          <ul class="body-list">
+            <li>React Hooks（`useState` / `useEffect`）；与项目一致的 HTTP 封装（如 axios 实例）。</li>
+            <li>React Router 基础；可选：公司 UI 组件库的一个列表+表单范式。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">参考资料</div>
+          <ul class="refs">
+            <li><a href="https://react.dev/learn" target="_blank" rel="noreferrer">React Learn</a></li>
+            <li><a href="https://reactrouter.com/en/main/start/overview" target="_blank" rel="noreferrer">React Router</a></li>
+            <li><a href="https://axios-http.com/docs/intro" target="_blank" rel="noreferrer">Axios 文档</a>（若团队使用）</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="w5" class="card">
+        <h2>第 5 周 · 数据层：迁移、Eloquent、简单关联</h2>
+        <div class="block">
+          <div class="label">目标</div>
+          <ul class="body-list">
+            <li>为一个小业务加字段/表：写迁移、跑迁移、模型与 `$fillable` 等基本配置。</li>
+            <li>读得懂一对一/一对多中的「一方/多方」与 `with` 预加载思路。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">学习内容</div>
+          <ul class="body-list">
+            <li>Migrations；数据库约束与回滚意识；避免把敏感逻辑堆在控制器里（按团队分层习惯）。</li>
+            <li>简单 N+1 问题概念：列表接口为何要用预加载。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">参考资料</div>
+          <ul class="refs">
+            <li><a href="https://laravel.com/docs/migrations" target="_blank" rel="noreferrer">Migrations</a></li>
+            <li><a href="https://laravel.com/docs/eloquent-relationships" target="_blank" rel="noreferrer">Eloquent Relationships</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="w6" class="card">
+        <h2>第 6 周 · H5 / WebView 与工程习惯</h2>
+        <div class="block">
+          <div class="label">目标</div>
+          <ul class="body-list">
+            <li>理解嵌入 App 的 H5 常见差异：视口、安全区、键盘顶起、部分 WebView 行为。</li>
+            <li>能按团队规范做环境变量、接口 baseURL、构建产物基本认知。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">学习内容</div>
+          <ul class="body-list">
+            <li>移动端 CSS 直觉；何时该和后端/原生同事对齐方案。</li>
+            <li>`.env` 与「不要把密钥提交进 Git」；前端构建 `npm run build` 在团队流水线中的位置（概念即可）。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">参考资料</div>
+          <ul class="refs">
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Viewport_meta_tag" target="_blank" rel="noreferrer">viewport meta · MDN</a></li>
+            <li><a href="https://vitejs.dev/guide/env-and-mode.html" target="_blank" rel="noreferrer">Vite 环境与变量</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="w7" class="card">
+        <h2>第 7 周 · 与团队仓库对齐：分支、MR、环境</h2>
+        <div class="block">
+          <div class="label">目标</div>
+          <ul class="body-list">
+            <li>能克隆公司项目、按文档起本地环境；在功能分支上开发并提交 MR/PR。</li>
+            <li>读懂 Code Review 中「安全、风格、业务」三类意见的常见含义。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">学习内容</div>
+          <ul class="body-list">
+            <li>分支命名、提交信息习惯；解决简单合并冲突。</li>
+            <li>项目内 README、接口文档、调试入口（如日志位置）的查找方法。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">参考资料</div>
+          <ul class="refs">
+            <li><a href="https://docs.github.com/en/get-started/using-git" target="_blank" rel="noreferrer">GitHub · Using Git</a></li>
+            <li><a href="https://laravel.com/docs/logging" target="_blank" rel="noreferrer">Laravel Logging</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="w8" class="card">
+        <h2>第 8 周 · 小模块竖切与复盘</h2>
+        <div class="block">
+          <div class="label">目标</div>
+          <ul class="body-list">
+            <li>在带教人 Review 下，独立完成一个「简单资源」的竖切：API + React 页面（或其中一段由团队分工但自己端到端理解）。</li>
+            <li>写简短自测清单与上线注意点（对接真实协作）。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">学习内容</div>
+          <ul class="body-list">
+            <li>任务拆分：接口字段 → 页面状态 → 边界情况（未登录、空列表、网络失败）。</li>
+            <li>复盘：本周最常卡住的点与可沉淀的「团队一页纸」笔记。</li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="label">参考资料</div>
+          <ul class="refs">
+            <li>以公司内部：接口约定、组件库文档、部署说明为准（外链仅作通用补充）。</li>
+          </ul>
+        </div>
+        <p class="note">若节奏更慢：可将每周拆成两周执行；第 1 周与「week1-plan」逐日版可对照使用。</p>
+      </div>
+    </div>
+  </body>
+</html>
