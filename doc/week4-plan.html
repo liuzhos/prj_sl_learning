@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>第 4 周学习计划（React：列表、表单与接口约定）</title>
+    <style>
+      :root { --bg:#0b1020; --card:#121a33; --text:#e8eefc; --muted:#b8c2e6; --accent:#7aa2ff; --border:rgba(255,255,255,.08); }
+      body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.5;}
+      .wrap{max-width:980px;margin:0 auto;padding:28px 16px 56px;} .card{background:rgba(18,26,51,.95);border:1px solid var(--border);border-radius:14px;padding:16px;margin-top:14px;}
+      h1{margin:0;font-size:20px;} h2{margin:18px 0 10px;font-size:16px;} .sub{margin-top:6px;color:var(--muted);font-size:13px;}
+      .toc{padding-left:18px;margin:0;} a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+      .block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;margin-top:10px;}
+      .block:first-of-type{margin-top:0;}
+      .label,.footer{color:var(--muted);font-size:12px;} ul,ol{margin:6px 0 0;padding-left:18px;} li{margin:6px 0;}
+      .day{scroll-margin-top:18px;}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>第 4 周学习计划（React：列表、表单与接口约定）</h1>
+      <div class="sub">目标：把后端 API 真实接到前端页面，形成可用的列表与表单基础范式。</div>
+      <div class="card">
+        <h2>目录</h2>
+        <ul class="toc">
+          <li><a href="#d1">第 1 天：页面结构与路由骨架</a></li><li><a href="#d2">第 2 天：列表页加载/空态/错误态</a></li><li><a href="#d3">第 3 天：分页与查询参数同步</a></li>
+          <li><a href="#d4">第 4 天：创建表单与字段校验展示</a></li><li><a href="#d5">第 5 天：编辑表单与回填</a></li><li><a href="#d6">第 6 天：删除与二次确认</a></li><li><a href="#d7">第 7 天：前端回归与重构整理</a></li>
+        </ul>
+      </div>
+
+      <div id="d1" class="day card"><h2>第 1 天：页面结构与路由骨架</h2>
+        <div class="block"><div class="label">目标</div><div>搭建列表/表单/详情页面骨架，明确页面状态位置。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>路由拆分、页面级状态与组件级状态分工。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://reactrouter.com/en/main/start/overview" target="_blank" rel="noreferrer">React Router</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>建 3 个页面并接好路由。</li><li>每页放占位组件，确保跳转可用。</li></ol></div>
+      </div>
+      <div id="d2" class="day card"><h2>第 2 天：列表页加载/空态/错误态</h2>
+        <div class="block"><div class="label">目标</div><div>列表页具备可用的状态反馈，不再只看控制台错误。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>Loading/Empty/Error 的最小 UI 规范与切换逻辑。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://react.dev/learn/conditional-rendering" target="_blank" rel="noreferrer">条件渲染</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>实现加载中骨架。</li><li>空数据和错误提示可区分显示。</li></ol></div>
+      </div>
+      <div id="d3" class="day card"><h2>第 3 天：分页与查询参数同步</h2>
+        <div class="block"><div class="label">目标</div><div>分页状态可和 URL 同步，刷新后能恢复当前视图。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>查询参数读取、写入与防抖更新。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams" target="_blank" rel="noreferrer">URLSearchParams</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>切页时更新 `page` 参数。</li><li>刷新页面后自动恢复页码。</li></ol></div>
+      </div>
+      <div id="d4" class="day card"><h2>第 4 天：创建表单与字段校验展示</h2>
+        <div class="block"><div class="label">目标</div><div>创建表单可提交，422 错误可映射到具体字段。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>受控输入、提交中禁用、防重复提交。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://react.dev/learn/managing-state" target="_blank" rel="noreferrer">Managing State</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>完成创建表单提交。</li><li>显示后端字段错误信息。</li></ol></div>
+      </div>
+      <div id="d5" class="day card"><h2>第 5 天：编辑表单与回填</h2>
+        <div class="block"><div class="label">目标</div><div>编辑页可回填并保存更新，保持与创建页一致的交互。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>详情加载、初始值设置、更新成功反馈。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://react.dev/learn/synchronizing-with-effects" target="_blank" rel="noreferrer">Synchronizing with Effects</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>加载详情后回填表单。</li><li>保存后回列表并显示提示。</li></ol></div>
+      </div>
+      <div id="d6" class="day card"><h2>第 6 天：删除与二次确认</h2>
+        <div class="block"><div class="label">目标</div><div>删除行为有明确确认与结果反馈，避免误操作。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>危险操作确认、删除后列表刷新策略。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/confirm" target="_blank" rel="noreferrer">confirm</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>实现删除确认弹窗。</li><li>删除后自动刷新并提示成功。</li></ol></div>
+      </div>
+      <div id="d7" class="day card"><h2>第 7 天：前端回归与重构整理</h2>
+        <div class="block"><div class="label">目标</div><div>完成“列表-创建-编辑-删除”全链路回归并沉淀可复用代码。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>抽取 API 层、复用状态组件、形成页面模板。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://react.dev/learn" target="_blank" rel="noreferrer">React Learn</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>整理回归清单并逐条勾选。</li><li>写 `week4-retro.md` 记录改进点。</li></ol></div>
+      </div>
+    </div>
+  </body>
+</html>

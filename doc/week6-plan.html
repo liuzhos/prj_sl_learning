@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>第 6 周学习计划（H5 / WebView 与工程习惯）</title>
+    <style>
+      :root { --bg:#0b1020; --card:#121a33; --text:#e8eefc; --muted:#b8c2e6; --accent:#7aa2ff; --border:rgba(255,255,255,.08); }
+      body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.5;}
+      .wrap{max-width:980px;margin:0 auto;padding:28px 16px 56px;}
+      .card{background:rgba(18,26,51,.95);border:1px solid var(--border);border-radius:14px;padding:16px;margin-top:14px;}
+      h1{margin:0;font-size:20px;} h2{margin:0 0 12px;font-size:16px;}
+      .sub{margin-top:6px;font-size:13px;color:var(--muted);} .label{color:var(--muted);font-size:12px;}
+      .toc{padding-left:18px;margin:0;}
+      a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+      .block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;margin-top:10px;}
+      .block:first-of-type{margin-top:0;} ul,ol{margin:6px 0 0;padding-left:18px;} li{margin:6px 0;}
+      .day{scroll-margin-top:18px;}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>第 6 周学习计划（H5 / WebView 与工程习惯）</h1>
+      <div class="sub">目标：理解移动端 WebView 场景差异，并养成工程化开发习惯。</div>
+
+      <div class="card">
+        <h2>目录</h2>
+        <ul class="toc">
+          <li><a href="#d1">第 1 天：移动端视口与安全区</a></li>
+          <li><a href="#d2">第 2 天：键盘顶起与输入体验</a></li>
+          <li><a href="#d3">第 3 天：网络异常与弱网提示</a></li>
+          <li><a href="#d4">第 4 天：环境变量与配置管理</a></li>
+          <li><a href="#d5">第 5 天：构建产物与发布认知</a></li>
+          <li><a href="#d6">第 6 天：日志与问题定位路径</a></li>
+          <li><a href="#d7">第 7 天：H5 专项复盘</a></li>
+        </ul>
+      </div>
+
+      <div id="d1" class="day card"><h2>第 1 天：移动端视口与安全区</h2>
+        <div class="block"><div class="label">目标</div><div>解决不同手机尺寸下页面挤压、留白和遮挡问题。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>viewport、rem/vw、安全区（notch）适配。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Viewport_meta_tag" target="_blank" rel="noreferrer">Viewport Meta</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>在模拟器对比 2 种屏幕尺寸。</li><li>修复 1 个安全区样式问题。</li></ol></div>
+      </div>
+
+      <div id="d2" class="day card"><h2>第 2 天：键盘顶起与输入体验</h2>
+        <div class="block"><div class="label">目标</div><div>输入框聚焦时不被键盘遮挡，操作流畅。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>滚动容器、输入聚焦、底部按钮随键盘行为。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow" target="_blank" rel="noreferrer">CSS overflow</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>复现输入框遮挡场景。</li><li>输出一套可复用处理方案。</li></ol></div>
+      </div>
+
+      <div id="d3" class="day card"><h2>第 3 天：网络异常与弱网提示</h2>
+        <div class="block"><div class="label">目标</div><div>在超时、断网、500 场景下给出明确提示。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>请求超时、错误重试、用户友好提示文案。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API" target="_blank" rel="noreferrer">Fetch API</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>模拟离线和超时。</li><li>实现重试按钮与失败占位。</li></ol></div>
+      </div>
+
+      <div id="d4" class="day card"><h2>第 4 天：环境变量与配置管理</h2>
+        <div class="block"><div class="label">目标</div><div>区分开发/测试/生产配置，避免敏感信息泄露。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>`.env` 管理、baseURL 切换、配置读取边界。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://vitejs.dev/guide/env-and-mode.html" target="_blank" rel="noreferrer">Vite Env</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>创建多环境配置示例。</li><li>检查仓库避免提交密钥。</li></ol></div>
+      </div>
+
+      <div id="d5" class="day card"><h2>第 5 天：构建产物与发布认知</h2>
+        <div class="block"><div class="label">目标</div><div>理解构建产物结构，知道线上静态资源问题如何排查。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>打包目录、hash 文件、资源路径与缓存。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://vitejs.dev/guide/build.html" target="_blank" rel="noreferrer">Vite Build</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>执行一次 `npm run build`。</li><li>阅读输出目录并记录关键文件。</li></ol></div>
+      </div>
+
+      <div id="d6" class="day card"><h2>第 6 天：日志与问题定位路径</h2>
+        <div class="block"><div class="label">目标</div><div>形成“前端日志 + 后端日志 + 请求链路”的定位方式。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>错误栈、请求 ID、按时间线还原问题。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/logging" target="_blank" rel="noreferrer">Laravel Logging</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>制造一次失败请求。</li><li>记录从前端到后端的排查步骤。</li></ol></div>
+      </div>
+
+      <div id="d7" class="day card"><h2>第 7 天：H5 专项复盘</h2>
+        <div class="block"><div class="label">目标</div><div>沉淀一页“WebView 常见坑排查清单”。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>把已解决问题提炼成可复用规则。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://developer.mozilla.org/zh-CN/" target="_blank" rel="noreferrer">MDN</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>整理 5 个常见问题和定位方式。</li><li>写 `week6-retro.md`。</li></ol></div>
+      </div>
+    </div>
+  </body>
+</html>

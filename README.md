@@ -12,3 +12,10 @@
 ## 每周学习内容
 
 * 参见 [week1-plan](https://liuzhos.github.io/prj_sl_learning/doc/week1-plan.html)
+* 参见 [week2-plan](https://liuzhos.github.io/prj_sl_learning/doc/week2-plan.html)
+* 参见 [week3-plan](https://liuzhos.github.io/prj_sl_learning/doc/week3-plan.html)
+* 参见 [week4-plan](https://liuzhos.github.io/prj_sl_learning/doc/week4-plan.html)
+* 参见 [week5-plan](https://liuzhos.github.io/prj_sl_learning/doc/week5-plan.html)
+* 参见 [week6-plan](https://liuzhos.github.io/prj_sl_learning/doc/week6-plan.html)
+* 参见 [week7-plan](https://liuzhos.github.io/prj_sl_learning/doc/week7-plan.html)
+* 参见 [week8-plan](https://liuzhos.github.io/prj_sl_learning/doc/week8-plan.html)

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>第 8 周学习计划（小模块竖切与复盘）</title>
+    <style>
+      :root { --bg:#0b1020; --card:#121a33; --text:#e8eefc; --muted:#b8c2e6; --accent:#7aa2ff; --border:rgba(255,255,255,.08); }
+      body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.5;}
+      .wrap{max-width:980px;margin:0 auto;padding:28px 16px 56px;}
+      .card{background:rgba(18,26,51,.95);border:1px solid var(--border);border-radius:14px;padding:16px;margin-top:14px;}
+      h1{margin:0;font-size:20px;} h2{margin:0 0 12px;font-size:16px;}
+      .sub{margin-top:6px;font-size:13px;color:var(--muted);} .label{color:var(--muted);font-size:12px;}
+      .toc{padding-left:18px;margin:0;}
+      a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+      .block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;margin-top:10px;}
+      .block:first-of-type{margin-top:0;} ul,ol{margin:6px 0 0;padding-left:18px;} li{margin:6px 0;}
+      .day{scroll-margin-top:18px;}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>第 8 周学习计划（小模块竖切与复盘）</h1>
+      <div class="sub">目标：独立完成一个小模块端到端交付，并形成结构化复盘。</div>
+
+      <div class="card">
+        <h2>目录</h2>
+        <ul class="toc">
+          <li><a href="#d1">第 1 天：选题与边界确认</a></li>
+          <li><a href="#d2">第 2 天：接口设计与数据结构</a></li>
+          <li><a href="#d3">第 3 天：后端实现与自测</a></li>
+          <li><a href="#d4">第 4 天：前端页面实现</a></li>
+          <li><a href="#d5">第 5 天：联调与问题清单</a></li>
+          <li><a href="#d6">第 6 天：演示准备与自测报告</a></li>
+          <li><a href="#d7">第 7 天：最终复盘</a></li>
+        </ul>
+      </div>
+
+      <div id="d1" class="day card"><h2>第 1 天：选题与边界确认</h2>
+        <div class="block"><div class="label">目标</div><div>明确模块范围，避免任务失控。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>需求拆解、范围管理、MVP 思维。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://www.atlassian.com/agile/project-management/user-stories" target="_blank" rel="noreferrer">User Stories</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>写模块边界（做什么/不做什么）。</li><li>列出 5 条验收标准。</li></ol></div>
+      </div>
+
+      <div id="d2" class="day card"><h2>第 2 天：接口设计与数据结构</h2>
+        <div class="block"><div class="label">目标</div><div>先完成接口契约，再开始编码。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>字段类型、状态码、错误结构一致性。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/controllers" target="_blank" rel="noreferrer">Controllers</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>写接口草案文档。</li><li>与前端字段约定对齐。</li></ol></div>
+      </div>
+
+      <div id="d3" class="day card"><h2>第 3 天：后端实现与自测</h2>
+        <div class="block"><div class="label">目标</div><div>后端实现最小 CRUD 并通过自测。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>校验、资源输出、错误处理。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/validation" target="_blank" rel="noreferrer">Validation</a></li><li><a href="https://laravel.com/docs/eloquent-resources" target="_blank" rel="noreferrer">API Resources</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>实现核心接口。</li><li>补 3 个异常输入测试。</li></ol></div>
+      </div>
+
+      <div id="d4" class="day card"><h2>第 4 天：前端页面实现</h2>
+        <div class="block"><div class="label">目标</div><div>完成列表与表单页面，具备基本交互与反馈。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>数据请求、状态渲染、表单提交反馈。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://react.dev/learn" target="_blank" rel="noreferrer">React Learn</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>接入列表查询接口。</li><li>完成创建/编辑流程。</li></ol></div>
+      </div>
+
+      <div id="d5" class="day card"><h2>第 5 天：联调与问题清单</h2>
+        <div class="block"><div class="label">目标</div><div>打通前后端链路，修复主要阻塞问题。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>联调顺序、接口对齐、错误归因。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status" target="_blank" rel="noreferrer">HTTP 状态码</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>列问题清单并逐条关闭。</li><li>记录修复前后差异。</li></ol></div>
+      </div>
+
+      <div id="d6" class="day card"><h2>第 6 天：演示准备与自测报告</h2>
+        <div class="block"><div class="label">目标</div><div>形成可演示版本，并准备测试证明材料。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>演示路径设计、测试清单化、风险提示。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://martinfowler.com/bliki/SmokeTest.html" target="_blank" rel="noreferrer">Smoke Test</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>准备 5 分钟演示脚本。</li><li>输出正常/异常/边界测试清单。</li></ol></div>
+      </div>
+
+      <div id="d7" class="day card"><h2>第 7 天：最终复盘</h2>
+        <div class="block"><div class="label">目标</div><div>总结本阶段能力成长与下阶段改进方向。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>复盘框架：目标、结果、问题、改进、行动。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://www.atlassian.com/team-playbook/plays/retrospective" target="_blank" rel="noreferrer">Retrospective</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>写 `week8-retro.md`。</li><li>列出下阶段 3 个可执行优化项。</li></ol></div>
+      </div>
+    </div>
+  </body>
+</html>

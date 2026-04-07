@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>第 2 周学习计划（Sanctum 登录与受保护接口）</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --card: #121a33;
+        --text: #e8eefc;
+        --muted: #b8c2e6;
+        --accent: #7aa2ff;
+        --border: rgba(255, 255, 255, 0.08);
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 16px 56px;
+      }
+      .header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: 0.2px;
+      }
+      .sub {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .card {
+        background: rgba(18, 26, 51, 0.95);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px 16px;
+        margin-top: 14px;
+      }
+      .toc {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding-left: 18px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      h2 {
+        margin: 18px 0 10px;
+        font-size: 16px;
+      }
+      .block {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 12px 12px;
+      }
+      .label {
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        margin: 10px 0 0;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(0, 0, 0, 0.25);
+        color: #dbe6ff;
+        font-size: 13px;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+      ul {
+        margin: 6px 0 0;
+        padding-left: 18px;
+      }
+      li {
+        margin: 6px 0;
+      }
+      .small {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .footer {
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .day {
+        scroll-margin-top: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <div>
+          <h1>第 2 周学习计划（Sanctum 登录与受保护接口）</h1>
+          <div class="sub">目标：在 7 天内走通「注册/登录/登出 + 受保护接口 + React 鉴权状态」最小闭环。</div>
+          <div class="sub">每天：3~5 小时（调试、查错、记录都算有效学习时间）</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>目录</h2>
+        <ul class="toc">
+          <li><a href="#day1">第 1 天：认证模型梳理与基线接口</a></li>
+          <li><a href="#day2">第 2 天：注册接口 + 基础校验</a></li>
+          <li><a href="#day3">第 3 天：登录接口 + Token 签发</a></li>
+          <li><a href="#day4">第 4 天：受保护接口与未授权响应</a></li>
+          <li><a href="#day5">第 5 天：React 接入登录并保存凭证</a></li>
+          <li><a href="#day6">第 6 天：React 访问受保护接口 + 401/403 处理</a></li>
+          <li><a href="#day7">第 7 天：登出、回归测试与周复盘</a></li>
+        </ul>
+        <div class="footer">建议：每天下线前记录「今天跑通了什么、还卡在哪里、明天第一步做什么」。</div>
+      </div>
+
+      <div id="day1" class="day card">
+        <h2>第 1 天：认证模型梳理与基线接口</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>明确本周采用的认证模式（Personal Access Token）；确认已有后端接口可用，并建立统一 JSON 返回格式基线。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>Sanctum 在 API Token 模式下的核心流程：注册/登录签发 Token，后续请求走 <code>Authorization: Bearer xxx</code>。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div>
+            <div><a href="https://laravel.com/docs/sanctum" target="_blank" rel="noreferrer">Laravel Sanctum</a></div>
+            <div><a href="https://laravel.com/docs/authentication" target="_blank" rel="noreferrer">Laravel Authentication</a></div>
+          </div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习</div>
+          <ol>
+            <li>在当前后端项目新增文档 `week2-auth-notes.md`，写下「注册、登录、受保护接口、登出」四步流程。</li>
+            <li>确认基础探活接口可访问（例如你第 1 周的 `/api/hello`）。</li>
+            <li>约定返回结构（示例）：成功 `{ "ok": true, "data": ... }`，失败 `{ "ok": false, "message": "..." }`。</li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>你能用自己的话解释 Token 流程，并有一份本周认证流程笔记。</div>
+        </div>
+      </div>
+
+      <div id="day2" class="day card">
+        <h2>第 2 天：注册接口 + 基础校验</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>实现注册接口：能创建用户，字段校验失败时返回 422 且错误结构清晰。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>Request 校验、密码加密、唯一性校验；理解 422 与 400 的常见语义差异。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div>
+            <div><a href="https://laravel.com/docs/validation" target="_blank" rel="noreferrer">Laravel Validation</a></div>
+            <div><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/422" target="_blank" rel="noreferrer">HTTP 422 · MDN</a></div>
+          </div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习</div>
+          <ol>
+            <li>创建注册接口（示例路径：<code>POST /api/register</code>）。</li>
+            <li>至少验证：<code>name</code> 必填、<code>email</code> 格式且唯一、<code>password</code> 最小长度。</li>
+            <li>使用 Postman 或 curl 测试 2 组数据：一组成功、一组故意失败并记录响应体。</li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>注册成功能拿到用户信息；非法输入返回 422 且错误字段可读。</div>
+        </div>
+      </div>
+
+      <div id="day3" class="day card">
+        <h2>第 3 天：登录接口 + Token 签发</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>实现登录接口：邮箱密码正确时签发 Token；错误时返回统一未授权结构。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>密码校验、Token 生成与命名（便于后续多端管理）；HTTP 401 语义。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div>
+            <div><a href="https://laravel.com/docs/sanctum#issuing-api-tokens" target="_blank" rel="noreferrer">Issuing API Tokens</a></div>
+            <div><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/401" target="_blank" rel="noreferrer">HTTP 401 · MDN</a></div>
+          </div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习</div>
+          <ol>
+            <li>实现 <code>POST /api/login</code>：正确凭证返回 token，错误凭证返回 401。</li>
+            <li>把 token 存在本地测试文件中（只用于本地，不提交 Git）。</li>
+            <li>用 curl 带上 <code>Authorization: Bearer TOKEN</code> 调试请求，确认 token 可被识别。</li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>登录成功可拿到 token；错误密码稳定返回 401。</div>
+        </div>
+      </div>
+
+      <div id="day4" class="day card">
+        <h2>第 4 天：受保护接口与未授权响应</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>新增受保护接口并挂上 <code>auth:sanctum</code>，验证「带 token 成功，不带 token 401」。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>中间件保护路由、请求用户上下文、基础权限边界（已登录 vs 未登录）。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div><a href="https://laravel.com/docs/sanctum#protecting-routes" target="_blank" rel="noreferrer">Protecting Routes</a></div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习</div>
+          <ol>
+            <li>新增接口（示例：<code>GET /api/me</code>），返回当前用户基础信息。</li>
+            <li>先不带 token 请求，确认是 401。</li>
+            <li>再带 token 请求，确认返回用户数据。</li>
+            <li>把两次结果（状态码 + 响应体）记录到 `week2-auth-notes.md`。</li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>受保护接口行为符合预期：未登录拒绝，已登录放行。</div>
+        </div>
+      </div>
+
+      <div id="day5" class="day card">
+        <h2>第 5 天：React 接入登录并保存凭证</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>前端完成最小登录页：提交账号密码，拿到 token，并在请求层自动携带。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>受控表单、异步请求状态、TypeScript 接口类型；token 存储策略（仅本地开发可先简化）。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div>
+            <div><a href="https://react.dev/learn/managing-state" target="_blank" rel="noreferrer">React 状态管理基础</a></div>
+            <div><a href="https://axios-http.com/docs/req_config" target="_blank" rel="noreferrer">Axios 请求配置</a>（若你项目使用 axios）</div>
+          </div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习</div>
+          <ol>
+            <li>新增登录表单（email/password）。</li>
+            <li>请求成功后保存 token（如 `localStorage`），并在请求封装里自动带 Bearer 头。</li>
+            <li>登录失败时在页面显示错误文案，不要只看控制台。</li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>前端可完成一次真实登录，且能在浏览器存储中看到 token。</div>
+        </div>
+      </div>
+
+      <div id="day6" class="day card">
+        <h2>第 6 天：React 访问受保护接口 + 401/403 处理</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>前端可调用受保护接口并展示用户信息；凭证失效时能统一处理并回到登录态。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>请求拦截、错误分流（401 与 403）、鉴权状态管理最小设计。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div>
+            <div><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/403" target="_blank" rel="noreferrer">HTTP 403 · MDN</a></div>
+            <div><a href="https://react.dev/learn/conditional-rendering" target="_blank" rel="noreferrer">条件渲染 · React</a></div>
+          </div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习</div>
+          <ol>
+            <li>页面加载时请求 <code>/api/me</code> 并渲染用户名。</li>
+            <li>手动删除 token 再刷新，确认触发 401 逻辑并回到登录提示。</li>
+            <li>补一个最小错误页或错误提示组件（至少包含状态码与重试按钮）。</li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>登录态与未登录态切换清晰，401/403 不会“静默失败”。</div>
+        </div>
+      </div>
+
+      <div id="day7" class="day card">
+        <h2>第 7 天：登出、回归测试与周复盘</h2>
+        <div class="block">
+          <div class="label">1, 目标</div>
+          <div>完成后端登出（撤销 token）与前端退出登录，做一轮小回归并输出复盘。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">2, 学习内容</div>
+          <div>接口闭环思维：注册 → 登录 → 访问受保护接口 → 登出 → 再次访问失败。</div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">3, 参考资料</div>
+          <div><a href="https://laravel.com/docs/sanctum#revoking-tokens" target="_blank" rel="noreferrer">Revoking Tokens</a></div>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">4, 练习</div>
+          <ol>
+            <li>实现 <code>POST /api/logout</code>，撤销当前 token。</li>
+            <li>前端点击「退出登录」后清理本地 token，并跳回登录页。</li>
+            <li>执行回归清单：注册、登录、访问、登出、再访问；记录结果。</li>
+            <li>写一段周复盘：本周最大卡点、怎么解决、下周想优化什么。</li>
+          </ol>
+        </div>
+        <div class="block" style="margin-top: 10px;">
+          <div class="label">完成标准</div>
+          <div>整个鉴权闭环可重复演示，且有可追溯的测试记录与复盘文字。</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>本周产出清单</h2>
+        <ul>
+          <li>认证流程笔记（`week2-auth-notes.md`）</li>
+          <li>注册、登录、受保护接口、登出四类接口的测试截图或文本记录</li>
+          <li>前端登录态页面（含错误提示）</li>
+          <li>本周复盘（至少 5 行）</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

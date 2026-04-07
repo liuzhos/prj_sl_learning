@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>第 5 周学习计划（数据层：迁移、Eloquent、简单关联）</title>
+    <style>
+      :root { --bg:#0b1020; --card:#121a33; --text:#e8eefc; --muted:#b8c2e6; --accent:#7aa2ff; --border:rgba(255,255,255,.08); }
+      body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.5;}
+      .wrap{max-width:980px;margin:0 auto;padding:28px 16px 56px;}
+      .card{background:rgba(18,26,51,.95);border:1px solid var(--border);border-radius:14px;padding:16px;margin-top:14px;}
+      h1{margin:0;font-size:20px;} h2{margin:0 0 12px;font-size:16px;}
+      .sub{margin-top:6px;font-size:13px;color:var(--muted);} .label{color:var(--muted);font-size:12px;}
+      .toc{padding-left:18px;margin:0;} a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+      .block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;margin-top:10px;}
+      .block:first-of-type{margin-top:0;} ul,ol{margin:6px 0 0;padding-left:18px;} li{margin:6px 0;}
+      .day{scroll-margin-top:18px;}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>第 5 周学习计划（数据层：迁移、Eloquent、简单关联）</h1>
+      <div class="sub">目标：掌握“改表结构 + 改模型 + 改查询”的最小数据层改造能力。</div>
+
+      <div class="card">
+        <h2>目录</h2>
+        <ul class="toc">
+          <li><a href="#d1">第 1 天：迁移基础与回滚意识</a></li>
+          <li><a href="#d2">第 2 天：模型字段与批量赋值</a></li>
+          <li><a href="#d3">第 3 天：一对多关联定义</a></li>
+          <li><a href="#d4">第 4 天：预加载与 N+1</a></li>
+          <li><a href="#d5">第 5 天：查询条件封装</a></li>
+          <li><a href="#d6">第 6 天：数据一致性与删除策略</a></li>
+          <li><a href="#d7">第 7 天：本周数据改造演示</a></li>
+        </ul>
+      </div>
+
+      <div id="d1" class="day card"><h2>第 1 天：迁移基础与回滚意识</h2>
+        <div class="block"><div class="label">目标</div><div>能独立新增字段迁移并安全回滚。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>迁移命名、up/down、回滚风险控制。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/migrations" target="_blank" rel="noreferrer">Migrations</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>新增 2 个业务字段。</li><li>执行 migrate/rollback 再重跑。</li></ol></div>
+      </div>
+
+      <div id="d2" class="day card"><h2>第 2 天：模型字段与批量赋值</h2>
+        <div class="block"><div class="label">目标</div><div>正确配置模型可写字段，避免误写敏感字段。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>`fillable/guarded`、cast、默认值策略。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/eloquent#mass-assignment" target="_blank" rel="noreferrer">Mass Assignment</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>为目标模型补 `fillable`。</li><li>验证多余字段不会被写入。</li></ol></div>
+      </div>
+
+      <div id="d3" class="day card"><h2>第 3 天：一对多关联定义</h2>
+        <div class="block"><div class="label">目标</div><div>能定义并使用 `hasMany/belongsTo`。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>外键约定、关联查询、关联创建。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/eloquent-relationships#one-to-many" target="_blank" rel="noreferrer">One To Many</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>建立父子模型关联。</li><li>实现一个带关联数据的详情接口。</li></ol></div>
+      </div>
+
+      <div id="d4" class="day card"><h2>第 4 天：预加载与 N+1</h2>
+        <div class="block"><div class="label">目标</div><div>识别并避免列表接口中的 N+1 查询。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>`with` 预加载与查询次数对比。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/eloquent-relationships#eager-loading" target="_blank" rel="noreferrer">Eager Loading</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>列表接口加 `with`。</li><li>记录优化前后查询次数。</li></ol></div>
+      </div>
+
+      <div id="d5" class="day card"><h2>第 5 天：查询条件封装</h2>
+        <div class="block"><div class="label">目标</div><div>把复杂条件从控制器抽离，降低重复代码。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>Local Scope、查询参数白名单。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/eloquent#query-scopes" target="_blank" rel="noreferrer">Query Scopes</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>抽一个 `scopeFilter`。</li><li>控制器改为调用 scope。</li></ol></div>
+      </div>
+
+      <div id="d6" class="day card"><h2>第 6 天：数据一致性与删除策略</h2>
+        <div class="block"><div class="label">目标</div><div>明确删除策略：软删除、硬删除、级联规则。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>软删除模型配置、外键约束、业务可恢复性。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/eloquent#soft-deleting" target="_blank" rel="noreferrer">Soft Deleting</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>为 1 个模型启用软删除。</li><li>验证查询是否默认排除已删除数据。</li></ol></div>
+      </div>
+
+      <div id="d7" class="day card"><h2>第 7 天：本周数据改造演示</h2>
+        <div class="block"><div class="label">目标</div><div>把本周数据层改造串成一条可演示流程。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>从迁移到接口到前端展示的端到端联动验证。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/database-testing" target="_blank" rel="noreferrer">Database Testing</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>演示“加字段 -> 跑迁移 -> 接口返回 -> 页面展示”。</li><li>写 `week5-retro.md` 记录风险点。</li></ol></div>
+      </div>
+    </div>
+  </body>
+</html>

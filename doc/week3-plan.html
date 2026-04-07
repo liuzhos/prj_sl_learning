@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>第 3 周学习计划（Laravel API：校验、资源、分页）</title>
+    <style>
+      :root { --bg:#0b1020; --card:#121a33; --text:#e8eefc; --muted:#b8c2e6; --accent:#7aa2ff; --border:rgba(255,255,255,.08); }
+      body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.5;}
+      .wrap{max-width:980px;margin:0 auto;padding:28px 16px 56px;}
+      .card{background:rgba(18,26,51,.95);border:1px solid var(--border);border-radius:14px;padding:16px;margin-top:14px;}
+      h1{margin:0;font-size:20px;} h2{margin:0 0 12px;font-size:16px;}
+      .sub{font-size:13px;margin-top:6px;color:var(--muted);} .label,.footer{color:var(--muted);font-size:12px;}
+      .toc{padding-left:18px;margin:0;} a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+      .block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;margin-top:10px;}
+      .block:first-of-type{margin-top:0;} ul,ol{margin:6px 0 0;padding-left:18px;} li{margin:6px 0;}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>第 3 周学习计划（Laravel API：校验、资源、分页）</h1>
+      <div class="sub">目标：把 API 从“能返回数据”升级到“结构稳定、错误清晰、列表可分页”。</div>
+
+      <div class="card">
+        <h2>目录</h2>
+        <ul class="toc">
+          <li><a href="#d1">第 1 天：需求拆解与接口字段约定</a></li>
+          <li><a href="#d2">第 2 天：创建接口 + Request 校验</a></li>
+          <li><a href="#d3">第 3 天：更新接口 + 局部更新规则</a></li>
+          <li><a href="#d4">第 4 天：列表接口 + 分页</a></li>
+          <li><a href="#d5">第 5 天：详情接口 + 资源转换</a></li>
+          <li><a href="#d6">第 6 天：筛选/排序参数约定</a></li>
+          <li><a href="#d7">第 7 天：接口回归测试与文档整理</a></li>
+        </ul>
+        <div class="footer">建议：固定一个示例资源（如 posts/devices），整周围绕它迭代。</div>
+      </div>
+
+      <div id="d1" class="card"><h2>第 1 天：需求拆解与接口字段约定</h2>
+        <div class="block"><div class="label">目标</div><div>明确一个资源的字段、约束、返回结构，为后续 6 天开发打底。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>接口契约思维：字段命名一致、状态码明确、错误体可读。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status" target="_blank" rel="noreferrer">HTTP 状态码 · MDN</a></li><li><a href="https://laravel.com/docs/responses" target="_blank" rel="noreferrer">Laravel Responses</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>写 `week3-api-spec.md`，包含字段表与示例 JSON。</li><li>约定统一返回壳：`ok/data/message/meta`。</li></ol></div>
+      </div>
+
+      <div id="d2" class="card"><h2>第 2 天：创建接口 + Request 校验</h2>
+        <div class="block"><div class="label">目标</div><div>实现创建接口，成功返回 201，校验失败返回 422。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>Form Request 校验、错误字段映射、创建成功返回体规范。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/validation" target="_blank" rel="noreferrer">Validation</a></li><li><a href="https://laravel.com/docs/controllers" target="_blank" rel="noreferrer">Controllers</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>实现 `POST /api/{resource}`。</li><li>准备 1 组合法输入与 1 组非法输入做验证。</li></ol></div>
+      </div>
+
+      <div id="d3" class="card"><h2>第 3 天：更新接口 + 局部更新规则</h2>
+        <div class="block"><div class="label">目标</div><div>实现 `PUT/PATCH`，并明确未传字段是否保留原值。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>幂等更新、部分更新、唯一字段更新时的校验例外写法。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/validation#rule-unique" target="_blank" rel="noreferrer">Validation unique</a></li><li><a href="https://laravel.com/docs/eloquent" target="_blank" rel="noreferrer">Eloquent</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>实现 `PATCH /api/{resource}/{id}`。</li><li>新增“只改一个字段”的测试样例。</li></ol></div>
+      </div>
+
+      <div id="d4" class="card"><h2>第 4 天：列表接口 + 分页</h2>
+        <div class="block"><div class="label">目标</div><div>实现可分页列表，返回 `data + meta`。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>`paginate` 参数处理、默认每页数、防止过大分页请求。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/pagination" target="_blank" rel="noreferrer">Pagination</a></li><li><a href="https://laravel.com/docs/queries" target="_blank" rel="noreferrer">Query Builder</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>实现 `GET /api/{resource}?page=1&per_page=10`。</li><li>补充 `meta.total/current_page/per_page`。</li></ol></div>
+      </div>
+
+      <div id="d5" class="card"><h2>第 5 天：详情接口 + 资源转换</h2>
+        <div class="block"><div class="label">目标</div><div>实现详情接口并使用 Resource 统一输出格式。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>API Resource 的字段裁剪、时间格式统一、空值处理。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/eloquent-resources" target="_blank" rel="noreferrer">Eloquent Resources</a></li><li><a href="https://laravel.com/docs/helpers" target="_blank" rel="noreferrer">Helpers</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>实现 `GET /api/{resource}/{id}`。</li><li>把创建、详情、列表三处输出结构对齐。</li></ol></div>
+      </div>
+
+      <div id="d6" class="card"><h2>第 6 天：筛选/排序参数约定</h2>
+        <div class="block"><div class="label">目标</div><div>支持至少 1 个筛选和 1 个排序参数。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>查询参数白名单、非法参数处理、默认排序策略。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/queries#where-clauses" target="_blank" rel="noreferrer">Where Clauses</a></li><li><a href="https://laravel.com/docs/queries#ordering-grouping-limit-and-offset" target="_blank" rel="noreferrer">Ordering</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>实现 `status` 筛选和 `sort` 排序。</li><li>写清非法参数时返回默认行为或错误信息。</li></ol></div>
+      </div>
+
+      <div id="d7" class="card"><h2>第 7 天：接口回归测试与文档整理</h2>
+        <div class="block"><div class="label">目标</div><div>完成 CRUD + 分页 + 筛选 + 错误场景回归。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>接口测试清单化、可复测思维、面向协作的最小文档。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://laravel.com/docs/http-tests" target="_blank" rel="noreferrer">HTTP Tests</a></li><li><a href="https://laravel.com/docs/logging" target="_blank" rel="noreferrer">Logging</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>整理 Postman Collection 或 curl 脚本。</li><li>补 `week3-retro.md`（3 个收获 + 2 个待改进点）。</li></ol></div>
+      </div>
+    </div>
+  </body>
+</html>

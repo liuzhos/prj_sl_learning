@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>第 7 周学习计划（与团队仓库对齐：分支、MR、环境）</title>
+    <style>
+      :root { --bg:#0b1020; --card:#121a33; --text:#e8eefc; --muted:#b8c2e6; --accent:#7aa2ff; --border:rgba(255,255,255,.08); }
+      body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.5;}
+      .wrap{max-width:980px;margin:0 auto;padding:28px 16px 56px;}
+      .card{background:rgba(18,26,51,.95);border:1px solid var(--border);border-radius:14px;padding:16px;margin-top:14px;}
+      h1{margin:0;font-size:20px;} h2{margin:0 0 12px;font-size:16px;}
+      .sub{margin-top:6px;font-size:13px;color:var(--muted);} .label{color:var(--muted);font-size:12px;}
+      .toc{padding-left:18px;margin:0;}
+      a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+      .block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;margin-top:10px;}
+      .block:first-of-type{margin-top:0;} ul,ol{margin:6px 0 0;padding-left:18px;} li{margin:6px 0;}
+      .day{scroll-margin-top:18px;}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>第 7 周学习计划（与团队仓库对齐：分支、MR、环境）</h1>
+      <div class="sub">目标：从“个人开发”过渡到“团队协作可交付”。</div>
+
+      <div class="card">
+        <h2>目录</h2>
+        <ul class="toc">
+          <li><a href="#d1">第 1 天：克隆项目与本地启动</a></li>
+          <li><a href="#d2">第 2 天：分支策略与命名规范</a></li>
+          <li><a href="#d3">第 3 天：提交信息与原子提交</a></li>
+          <li><a href="#d4">第 4 天：发起 MR/PR 与描述模板</a></li>
+          <li><a href="#d5">第 5 天：处理 Review 意见</a></li>
+          <li><a href="#d6">第 6 天：简单冲突解决</a></li>
+          <li><a href="#d7">第 7 天：协作流程复盘</a></li>
+        </ul>
+      </div>
+
+      <div id="d1" class="day card"><h2>第 1 天：克隆项目与本地启动</h2>
+        <div class="block"><div class="label">目标</div><div>按团队文档完整拉起项目。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>项目结构阅读、启动依赖检查。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository" target="_blank" rel="noreferrer">Cloning a Repository</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>本地启动前后端。</li><li>记录首次启动问题清单。</li></ol></div>
+      </div>
+
+      <div id="d2" class="day card"><h2>第 2 天：分支策略与命名规范</h2>
+        <div class="block"><div class="label">目标</div><div>形成“功能分支开发”习惯，不在主分支直接改。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>feature/hotfix 分支语义、命名规范。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow" target="_blank" rel="noreferrer">Gitflow Overview</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>创建 feature 分支并提交 1 次改动。</li><li>同步主分支最新代码。</li></ol></div>
+      </div>
+
+      <div id="d3" class="day card"><h2>第 3 天：提交信息与原子提交</h2>
+        <div class="block"><div class="label">目标</div><div>每次提交表达单一意图，方便 Review 与回滚。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>提交粒度、提交信息结构、避免“巨大提交”。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/" target="_blank" rel="noreferrer">Conventional Commits</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>拆成 2~3 个原子提交。</li><li>每条 commit message 写清意图。</li></ol></div>
+      </div>
+
+      <div id="d4" class="day card"><h2>第 4 天：发起 MR/PR 与描述模板</h2>
+        <div class="block"><div class="label">目标</div><div>提交可审阅的 MR/PR，包含变更说明与测试计划。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>PR 模板字段：背景、改动、风险、验证。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://docs.github.com/en/pull-requests" target="_blank" rel="noreferrer">GitHub Pull Requests</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>发起一次 MR/PR。</li><li>补截图或接口请求示例。</li></ol></div>
+      </div>
+
+      <div id="d5" class="day card"><h2>第 5 天：处理 Review 意见</h2>
+        <div class="block"><div class="label">目标</div><div>高质量响应 Review，区分必须改与可讨论项。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>安全问题、逻辑问题、风格建议的优先级。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://google.github.io/eng-practices/review/reviewer/" target="_blank" rel="noreferrer">Code Review Practices</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>逐条回复 Review 评论。</li><li>补提交并更新 PR 描述。</li></ol></div>
+      </div>
+
+      <div id="d6" class="day card"><h2>第 6 天：简单冲突解决</h2>
+        <div class="block"><div class="label">目标</div><div>能处理常见文本冲突并确保逻辑不回退。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>冲突标记含义、手工合并、合并后回归。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://docs.github.com/en/get-started/using-git/resolving-merge-conflicts-after-a-git-rebase" target="_blank" rel="noreferrer">Resolving Merge Conflicts</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>模拟同文件冲突并解决。</li><li>重新跑关键功能自测。</li></ol></div>
+      </div>
+
+      <div id="d7" class="day card"><h2>第 7 天：协作流程复盘</h2>
+        <div class="block"><div class="label">目标</div><div>完成从分支开发到合并的全流程演练。</div></div>
+        <div class="block"><div class="label">学习内容</div><div>协作瓶颈识别、沟通前置与风险提示。</div></div>
+        <div class="block"><div class="label">参考资料</div><ul><li><a href="https://docs.github.com/en/get-started/using-git" target="_blank" rel="noreferrer">Using Git</a></li></ul></div>
+        <div class="block"><div class="label">练习</div><ol><li>输出“协作流程清单”一页纸。</li><li>写 `week7-retro.md`。</li></ol></div>
+      </div>
+    </div>
+  </body>
+</html>
